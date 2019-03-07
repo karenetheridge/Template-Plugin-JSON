@@ -3,12 +3,12 @@
 use strict;
 use warnings;
 
-use Test::More tests => 9;
+use Test::More tests => 8;
 
 use Template;
 use JSON;
 
-use ok 'Template::Plugin::JSON';
+use Template::Plugin::JSON;
 
 ok( Template->new->process(
 	\qq{[% USE JSON ( pretty => 1 ) %]{ "blah":[% blah.json %], "baz":[% baz.json %], "oink":[% oink.json %] }},
