@@ -1,5 +1,3 @@
-#!/usr/bin/perl
-
 use 5.006;
 
 package Template::Plugin::JSON;
