@@ -11,7 +11,7 @@ use Carp qw/croak/;
 
 extends qw(Moose::Object Template::Plugin);
 
-our $VERSION = "0.08";
+our $VERSION = '0.09';
 
 
 has context => (
