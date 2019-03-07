@@ -4,8 +4,7 @@ use warnings;
 use Test::More tests => 8;
 
 use Template;
-use JSON;
-
+use JSON::MaybeXS 'from_json';
 use Template::Plugin::JSON;
 
 ok( Template->new->process(

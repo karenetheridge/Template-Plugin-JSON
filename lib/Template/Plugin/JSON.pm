@@ -5,7 +5,7 @@ package Template::Plugin::JSON;
 
 use Moose;
 
-use JSON ();
+use JSON::MaybeXS 'JSON';
 
 use Carp qw/croak/;
 
@@ -38,7 +38,7 @@ sub BUILDARGS {
 	my $args;
 
 	if ( @args == 1 and not ref $args[0] ) {
-		warn "Single argument form is deprecated, this module always uses JSON/JSON::XS now";
+		warn "Single argument form is deprecated, this module always uses JSON::PP/Cpanel::JSON::XS now";
 	}
 
 	$args = ref $args[0] ? $args[0] : {};
@@ -49,7 +49,7 @@ sub BUILDARGS {
 sub _build_json_converter {
 	my $self = shift;
 
-	my $json = JSON->new->allow_nonref(1);
+	my $json = JSON()->new->allow_nonref(1);
 
 	my $args = $self->json_args;
 
@@ -106,13 +106,13 @@ __END__
 This plugin provides a C<.json> vmethod to all value types when loaded. You
 can also decode a json string back to a data structure.
 
-It will load the L<JSON> module (you probably want L<JSON::XS> installed for
-automatic speed ups).
+It will load the L<JSON::MaybeXS> module, which will use L<Cpanel::JSON::XS>
+when possible and fall back to L<JSON::PP> otherwise.
 
-Any options on the USE line are passed through to the JSON object, much like L<JSON/to_json>.
+Any options on the USE line are passed through to the JSON object, much like L<Cpanel::JSON::XS/to_json>.
 
 =head1 SEE ALSO
 
-L<JSON>, L<Template::Plugin>
+L<JSON::MaybeXS>, L<Template::Plugin>
 
 =cut
