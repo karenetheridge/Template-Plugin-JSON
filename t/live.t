@@ -4,7 +4,7 @@ use warnings;
 use Test::More tests => 8;
 
 use Template;
-use JSON::MaybeXS 'from_json';
+use JSON::MaybeXS 'decode_json';
 use Template::Plugin::JSON;
 
 ok( Template->new->process(
@@ -22,7 +22,7 @@ like($out, qr/\{\W*foo\W*:\W*bar\W*\}/, "output seems OK" );
 like( $out, qr/\n/, "pretty output" );
 
 is_deeply(
-	from_json($out),
+	decode_json($out),
 	$vars,
 	"round tripping",
 );
